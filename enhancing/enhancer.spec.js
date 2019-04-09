@@ -38,7 +38,23 @@ describe('Enchant system', () => {
         name: '[+6] shield',
         type: 'armor',
         durability: 50,
-        enhancement:6
+        enhancement: 6
+      });
+    });
+  });
+
+  describe('fail()', () => {
+    const result1 = enhancer.fail(item1);
+    const result2 = enhancer.fail(item2);
+    const result3 = enhancer.fail(item3);
+
+    item1('Runs fail test', () => {
+      expect(result1).toEqual({
+        originalName: 'shield',
+        name: '[+5] shield',
+        type: 'armor',
+        durability: 45,
+        enhancement: 5
       });
     });
   });
