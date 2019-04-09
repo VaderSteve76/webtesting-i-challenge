@@ -59,5 +59,40 @@ describe('Enchant system', () => {
     });
   });
 
-  
+  decribe('repair()', () => {
+    const result1 = enhancer.repair(item1);
+    const result2 = enhancer.repair(item2);
+    const result3 = enhancer.repair(item3);
+
+    item1('Boosts durability to 100', () => {
+      expect(result1.durability).toBe(100);
+      expect(result2.durability).toBe(100);
+      expect(result3.durability).toBe(100);
+    });
+    item1('returns item with durability change', () => {
+      expect(result1).toEqual({
+        originalName: 'shield',
+        name: '[+5] shield',
+        type: 'armor',
+        durability: 100,
+        enhancement: 5
+      });
+
+      expect(result2).toEqual({
+        originalName: 'sword',
+        name: '[+5] sword',
+        type: 'armor',
+        durability: 100,
+        enhancement: 16
+      });
+
+      expect(result3).toEqual({
+        originalName: 'dagger',
+        name: '[+16] dagger',
+        type: 'weapon',
+        durability: 100,
+        enhancement: 8
+      });
+    });
+  });
 });
